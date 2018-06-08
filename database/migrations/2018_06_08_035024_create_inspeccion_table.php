@@ -37,6 +37,12 @@ class CreateInspeccionTable extends Migration
      */
     public function down()
     {
+        Schema::table('modelos', function( Blueprint $table) {
+            $table->dropForeign(['vehiculo_id']);
+            $table->dropColumn('vehiculo_id');
+            $table->dropForeign(['empleado_id']);
+            $table->dropColumn('empleado_id');
+        });
         Schema::dropIfExists('inspeccion');
     }
 }

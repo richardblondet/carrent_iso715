@@ -36,6 +36,12 @@ class CreateRentaTable extends Migration
      */
     public function down()
     {
+        Schema::table('modelos', function( Blueprint $table) {
+            $table->dropForeign(['cliente_id']);
+            $table->dropColumn('cliente_id');
+            $table->dropForeign(['empleado_id']);
+            $table->dropColumn('empleado_id');
+        });
         Schema::dropIfExists('renta');
     }
 }

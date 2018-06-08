@@ -40,6 +40,16 @@ class CreateVehiculosTable extends Migration
      */
     public function down()
     {
+        Schema::table('modelos', function( Blueprint $table) {
+            $table->dropForeign(['tipo_vehiculo_id']);
+            $table->dropColumn('tipo_vehiculo_id');
+            $table->dropForeign(['marca_id']);
+            $table->dropColumn('marca_id');
+            $table->dropForeign(['modelo_id']);
+            $table->dropColumn('modelo_id');
+            $table->dropForeign(['tipo_combustible_id']);
+            $table->dropColumn('tipo_combustible_id');
+        });
         Schema::dropIfExists('vehiculos');
     }
 }
