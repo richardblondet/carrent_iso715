@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route resources
+Route::resources([
+	'roles' 			=> 'RolesController',
+	'usuarios' 			=> 'UsuariosController',
+	'creditoclientes' 	=> 'CreditoClientesController',
+	'tiposvehiculos' 	=> 'TiposVehiculosController',
+	'marcas' 			=> 'MarcasController',
+	'modelos' 			=> 'ModelosController',
+	'tiposcombustibles' => 'TiposCombustiblesController',
+	'vehiculos' 		=> 'VehiculosController',
+	'inspeccion' 		=> 'InspeccionController',
+	'renta' 			=> 'RentaController'
+]);

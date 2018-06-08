@@ -1,0 +1,14 @@
+#!/bin/sh
+
+echo "Making Controllers Resource"
+
+php artisan make:controller RolesController --resource --model=Roles
+php artisan make:controller UsuariosController --resource --model=Usuarios
+php artisan make:controller CreditoClientesController --resource --model=CreditoClientes
+php artisan make:controller TiposVehiculosController --resource --model=TiposVehiculos
+php artisan make:controller MarcasController --resource --model=Marcas
+php artisan make:controller ModelosController --resource --model=Modelos
+php artisan make:controller TiposCombustiblesController --resource --model=TiposCombustibles
+php artisan make:controller VehiculosController --resource --model=Vehiculos
+php artisan make:controller InspeccionController --resource --model=Inspeccion
+php artisan make:controller RentaController --resource --model=Renta
