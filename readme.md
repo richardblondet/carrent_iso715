@@ -22,7 +22,7 @@ Aplicación realizada con Laravel 5.5 para proyecto de exoneración, curso Desar
 
 1. Clona este repositorio
 ```
-$ git clone <repo-url>/carrent_iso715.git
+$ git clone https://github.com/richardblondet/carrent_iso715.git
 $ cd carrent_iso715
 ```
 2. Sirve el directorio `public`
