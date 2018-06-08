@@ -1,0 +1,12 @@
+#!/bin/sh
+
+php artisan make:model Roles  
+php artisan make:model Usuarios  
+php artisan make:model CreditoClientes  
+php artisan make:model TiposVehiculos  
+php artisan make:model Marcas  
+php artisan make:model Modelos  
+php artisan make:model TiposCombustibles  
+php artisan make:model Vehiculos  
+php artisan make:model Inspeccion  
+php artisan make:model Renta
