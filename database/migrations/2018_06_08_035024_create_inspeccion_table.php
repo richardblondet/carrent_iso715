@@ -17,15 +17,15 @@ class CreateInspeccionTable extends Migration
             $table->increments('id');
             $table->integer('vehiculo_id')->unsigned();
             $table->foreign('vehiculo_id')->references('id')->on('vehiculos')->onDelete('cascade');
-            $table->smallIntener('tiene_rayaduras')->default( 0 );
+            $table->smallInteger('tiene_rayaduras')->default( 0 );
             $table->string('estado_combustible');
-            $table->smallIntener('goma_repuesta')->default( 0 );
-            $table->smallIntener('gato')->default( 0 );
-            $table->smallIntener('cristales_rotos')->default( 0 );
-            $table->smallIntener('estado_gomas')->default( 0 );
+            $table->smallInteger('goma_repuesta')->default( 0 );
+            $table->smallInteger('gato')->default( 0 );
+            $table->smallInteger('cristales_rotos')->default( 0 );
+            $table->smallInteger('estado_gomas')->default( 0 );
             $table->integer('empleado_id')->unsigned();
             $table->foreign('empleado_id')->references('id')->on('users')->onDelete('cascade');
-            $table->smallIntener('estado')->default( 0 );
+            $table->smallInteger('estado')->default( 0 );
             $table->timestamps();
         });
     }

@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->char('cedula', 11)->unique();  
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->unique('email');
             $table->char('celular', 11)->unique();
             $table->smallInteger('estado')->default( 0 );
             $table->string('password');

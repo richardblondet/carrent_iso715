@@ -26,8 +26,6 @@ class CreateVehiculosTable extends Migration
             $table->foreign('marca_id')->references('id')->on('marcas')->onDelete('cascade');
             $table->integer('modelo_id')->unsigned();
             $table->foreign('modelo_id')->references('id')->on('modelos')->onDelete('cascade');
-            $table->integer('modelo_id')->unsigned();
-            $table->foreign('modelo_id')->references('id')->on('modelos')->onDelete('cascade');
             $table->integer('tipo_combustible_id')->unsigned();
             $table->foreign('tipo_combustible_id')->references('id')->on('tipos_combustibles')->onDelete('cascade');
             $table->smallInteger('estado')->default( 1 );
