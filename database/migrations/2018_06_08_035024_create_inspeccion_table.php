@@ -24,7 +24,7 @@ class CreateInspeccionTable extends Migration
             $table->smallInteger('cristales_rotos')->default( 0 );
             $table->smallInteger('estado_gomas')->default( 0 );
             $table->integer('empleado_id')->unsigned();
-            $table->foreign('empleado_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('empleado_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->smallInteger('estado')->default( 0 );
             $table->timestamps();
         });

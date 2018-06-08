@@ -16,9 +16,9 @@ class CreateRentaTable extends Migration
         Schema::create('renta', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('empleado_id')->unsigned();
-            $table->foreign('empleado_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('empleado_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('cliente_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->float('monto_por_dia', 8, 2);
             $table->float('comision_empleado', 8, 2);
             $table->text('comentario');
