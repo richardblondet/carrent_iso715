@@ -1,0 +1,24 @@
+#!/bin/sh
+
+echo "Step into the views directory"
+
+cd ./resources/views
+
+echo "Create array of directories"
+
+declare -a ARR=("roles" "usuarios" "credito_clientes" "tipos_vehiculos" "marcas" "modelos" "tipos_combustibles" "vehiculos" "inspeccion" "renta")
+
+echo ${ARR[@]}
+
+for d in "${ARR[@]}"
+do
+	echo "Mkdir and cd onto $d"
+	mkdir "./$d"
+	
+	echo "Create files here"
+	touch "./$d/index.blade.php"
+	touch "./$d/create.blade.php"
+	touch "./$d/update.blade.php"
+
+	echo "Repeat"
+done
