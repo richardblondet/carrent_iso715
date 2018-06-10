@@ -34,10 +34,10 @@
 		</a>
 		<ul class="dropdown-menu">
 			<li>
-				<a class='sidebar-link' href="#">Gestionar Usuarios</a>
+				<a class='sidebar-link' href="{{ route('usuarios.index') }}">Gestionar Usuarios</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Roles</a>
+				<a class='sidebar-link' href="{{ route('roles.index') }}">Roles</a>
 			</li>
 		</ul>
 	</li>
