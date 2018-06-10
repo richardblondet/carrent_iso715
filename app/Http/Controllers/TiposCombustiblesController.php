@@ -14,7 +14,8 @@ class TiposCombustiblesController extends Controller
      */
     public function index()
     {
-        //
+        $tipos = TiposCombustibles::all();
+        return view('tiposcombustibles.index')->with('tipos', $tipos);
     }
 
     /**
@@ -24,7 +25,7 @@ class TiposCombustiblesController extends Controller
      */
     public function create()
     {
-        //
+        return view('tiposcombustibles.create');
     }
 
     /**
@@ -34,8 +35,23 @@ class TiposCombustiblesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $tipo_data = $request->all();
+
+        $tipo_data['estado'] = 1;
+
+        $tipo = TiposCombustibles::create( $tipo_data );
+
+        if( $tipo ) {
+            $request->session()->flash('message', 'Tipo de combustible creado exitosamente');
+            $request->session()->flash('message-class', 'success');
+        }
+        else {
+            $request->session()->flash('message', 'No se pudo crear el tipo de combustible');
+            $request->session()->flash('message-class', 'danger');   
+        }
+
+        return redirect()->route('tiposcombustibles.create');
     }
 
     /**
@@ -44,9 +60,11 @@ class TiposCombustiblesController extends Controller
      * @param  \App\TiposCombustibles  $tiposCombustibles
      * @return \Illuminate\Http\Response
      */
-    public function show(TiposCombustibles $tiposCombustibles)
+    public function show(TiposCombustibles $tiposCombustibles, $id)
     {
-        //
+        $tipo = $tiposCombustibles->find( $id );
+
+        return view('tiposcombustibles.update')->with( 'tipo', $tipo );
     }
 
     /**
@@ -67,9 +85,20 @@ class TiposCombustiblesController extends Controller
      * @param  \App\TiposCombustibles  $tiposCombustibles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TiposCombustibles $tiposCombustibles)
+    public function update(Request $request, TiposCombustibles $tiposCombustibles, $id)
     {
-        //
+        $tipo = $tiposCombustibles->find( $id );
+
+        $tipo->nombre = $request->input('nombre');
+        $tipo->costo = $request->input('costo');
+        $tipo->estado = ( $request->input('estado') == 'on' ) ? 1 : 0;
+
+        $tipo->save();
+
+        $request->session()->flash('message', 'Tipo de combustible actualizado exitosamente');
+        $request->session()->flash('message-class', 'success');
+
+        return back();
     }
 
     /**
@@ -78,8 +107,16 @@ class TiposCombustiblesController extends Controller
      * @param  \App\TiposCombustibles  $tiposCombustibles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TiposCombustibles $tiposCombustibles)
+    public function destroy(Request $request, TiposCombustibles $tiposCombustibles, $id)
     {
-        //
+        $tipo = $tiposCombustibles->find( $id );
+
+        if( $tipo ) {
+            $tipo->delete();    
+            $request->session()->flash('message', sprintf('Tipo de combustible "%s" eliminado existosamente', $tipo->tipo ));
+            $request->session()->flash('message-class', 'success' );
+        }
+
+        return redirect()->route('tiposcombustibles.index');
     }
 }
