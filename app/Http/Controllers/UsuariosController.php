@@ -46,6 +46,7 @@ class UsuariosController extends Controller
 
         // Process password
         $user_data['password'] = bcrypt( $request->input('password') );
+        $user_data['estado'] = 1;
 
         // Create user
         $usuario = Usuarios::create( $user_data );
@@ -69,9 +70,14 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuarios $usuarios)
+    public function show(Usuarios $usuarios, $id)
     {
-        //
+        $usuario = $usuarios->findOrFail( $id );
+        
+        $roles = Roles::all();
+
+        // return $usuario;
+        return view('usuarios.update')->with( 'usuario', $usuario )->with( 'roles', $roles );
     }
 
     /**
@@ -92,9 +98,27 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuarios $usuarios)
+    public function update(Request $request, Usuarios $usuarios, $id)
     {
-        //
+        $usuario = $usuarios->find( $id );
+        $usuario->nombre = $request->input('nombre');
+        $usuario->cedula = $request->input('cedula');
+        $usuario->email = $request->input('email');
+        $usuario->celular = $request->input('celular');
+        $usuario->licencia = $request->input('licencia');
+        $usuario->rol_id = $request->input('rol_id');
+        $usuario->estado = ( $request->input('estado') ) ? 1 : 0;
+
+        if(! empty( $request->input('password') )) {
+            $usuario->password = bcrypt( $request->input('password') );
+        }
+
+        $usuario->save();
+
+        $request->session()->flash('message', sprintf( 'Rol %s actualizado exitosamente', $usuario->nombre ));
+        $request->session()->flash('message-class', 'success' );
+
+        return redirect()->route('usuarios.show', $id );
     }
 
     /**

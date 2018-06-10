@@ -99,7 +99,7 @@ class RolesController extends Controller
         $rol->save();
 
         $request->session()->flash('message', sprintf( 'Rol %s actualizado exitosamente', $rol->nombre ));
-            $request->session()->flash('message-class', 'success' );
+        $request->session()->flash('message-class', 'success' );
 
         return redirect()->route('roles.show',  $rol->id );
     }
