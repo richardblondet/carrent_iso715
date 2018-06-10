@@ -28,7 +28,7 @@ class UsuariosController extends Controller
     public function create()
     {   
         // Relationship
-        $roles = Roles::all();
+        $roles = Roles::where('estado', 1)->get();
         return view('usuarios.create')->with('roles', $roles );
     }
 
@@ -74,7 +74,7 @@ class UsuariosController extends Controller
     {
         $usuario = $usuarios->findOrFail( $id );
         
-        $roles = Roles::all();
+        $roles = Roles::where('estado', 1)->get();
 
         // return $usuario;
         return view('usuarios.update')->with( 'usuario', $usuario )->with( 'roles', $roles );
