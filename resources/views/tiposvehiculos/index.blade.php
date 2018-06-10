@@ -40,7 +40,7 @@
 				<div class="layer w-100">
 					<div class="peers ai-sb fxw-nw">
 						<div class="peer peer-greed iso-box-concept">
-							<span class="ti-user"></span>
+							<span class="ti-car"></span>
 						</div>
 					</div>
 				</div>

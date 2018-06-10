@@ -14,7 +14,9 @@ class RentaController extends Controller
      */
     public function index()
     {
-        //
+        $rentas = Renta::all();
+
+        return view('renta.index')->with('rentas', $rentas);
     }
 
     /**

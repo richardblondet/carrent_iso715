@@ -14,7 +14,8 @@ class InspeccionController extends Controller
      */
     public function index()
     {
-        //
+        $inspecciones = Inspeccion::all();
+        return view('inspeccion.index')->with( 'inspecciones', $inspecciones );
     }
 
     /**

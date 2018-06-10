@@ -14,7 +14,8 @@ class CreditoClientesController extends Controller
      */
     public function index()
     {
-        //
+        $creditos = CreditoClientes::all();
+        return view('creditoclientes.index')->with('creditos', $creditos );
     }
 
     /**
