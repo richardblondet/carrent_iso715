@@ -26,7 +26,7 @@ class MarcasController extends Controller
      */
     public function create()
     {
-        //
+        return view('marcas.create');
     }
 
     /**
@@ -37,7 +37,24 @@ class MarcasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nombre = $request->input('nombre');
+
+        $marca = Marcas::create([
+            'nombre' => $nombre,
+            'estado' => 1
+        ]);
+
+        if( $marca ) {
+            # notify user
+            $request->session()->flash('message', 'Creado exitosamente');
+            $request->session()->flash('message-class', 'success');
+        }
+        else {
+            $request->session()->flash('message', 'No se pudo crear, inténtelo nuevamente');
+            $request->session()->flash('message-class', 'danger');   
+        }
+
+        return back();
     }
 
     /**
@@ -46,9 +63,10 @@ class MarcasController extends Controller
      * @param  \App\Marcas  $marcas
      * @return \Illuminate\Http\Response
      */
-    public function show(Marcas $marcas)
+    public function show(Marcas $marcas, $id)
     {
-        //
+        $marca = $marcas->find( $id );
+        return view('marcas.update')->with('marca', $marca);
     }
 
     /**
@@ -69,9 +87,18 @@ class MarcasController extends Controller
      * @param  \App\Marcas  $marcas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marcas $marcas)
+    public function update(Request $request, Marcas $marcas, $id)
     {
-        //
+        $marca = $marcas->find( $id );
+        $marca->nombre = $request->input('nombre');
+        $marca->estado = ( $request->input('estado') == 'on' ) ? 1 : 0;
+
+        $marca->save();
+
+        $request->session()->flash('message', sprintf('Marca "%s" actualizada existosamente', $marca->nombre ));
+        $request->session()->flash('message-class', 'success' );
+
+        return back();
     }
 
     /**
@@ -80,8 +107,16 @@ class MarcasController extends Controller
      * @param  \App\Marcas  $marcas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marcas $marcas)
+    public function destroy(Marcas $marcas, $id)
     {
-        //
+        $marca = $marcas->find( $id );
+
+        if( $marca ) {
+            $marca->delete();    
+            $request->session()->flash('message', sprintf('Marca "%s" eliminada existosamente', $marca->nombre ));
+            $request->session()->flash('message-class', 'success' );
+        }
+
+        return redirect()->route('marcas.index');
     }
 }

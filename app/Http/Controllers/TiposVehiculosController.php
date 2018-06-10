@@ -106,8 +106,16 @@ class TiposVehiculosController extends Controller
      * @param  \App\TiposVehiculos  $tiposVehiculos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TiposVehiculos $tiposVehiculos)
+    public function destroy(Request $request, TiposVehiculos $tiposVehiculos, $id)
     {
-        //
+        $tipo = $tiposVehiculos->find( $id );
+
+        if( $tipo ) {
+            $tipo->delete();    
+            $request->session()->flash('message', sprintf('Rol %s eliminado existosamente', $tipo->nombre ));
+            $request->session()->flash('message-class', 'success' );
+        }
+
+        return redirect()->route('tiposvehiculos.index');
     }
 }
