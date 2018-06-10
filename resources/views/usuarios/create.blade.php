@@ -29,7 +29,7 @@
 				</div>
 				<div class="form-group">
 					<label for="licenciaUsuario">Licencia</label>
-					<input type="text" class="form-control" id="licenciaUsuario" aria-describedby="rolHelp" placeholder="Licencia vigente" name="celular">
+					<input type="text" class="form-control" id="licenciaUsuario" aria-describedby="rolHelp" placeholder="Licencia vigente" name="licencia">
 				</div>
 				<div class="form-group">
 					<label for="licenciaUsuario">Rol</label>
@@ -40,6 +40,10 @@
 						<option value="">No existen roles que mostrar</option>
 						@endforelse
 					</select>
+				</div>
+				<div class="form-group">
+					<label for="licenciaUsuario">Contraseña</label>
+					<input type="password" class="form-control" id="licenciaUsuario" aria-describedby="rolHelp" placeholder="Inserte una contraseña para este usuario" name="password" required>
 				</div>
 				<!-- <div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
 					<input type="checkbox" id="estadoRol" name="estado" class="peer">

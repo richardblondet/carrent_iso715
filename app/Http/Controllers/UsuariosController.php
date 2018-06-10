@@ -41,8 +41,14 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
 
+        // Gather all user info
+        $user_data = $request->all();
+
+        // Process password
+        $user_data['password'] = bcrypt( $request->input('password') );
+
         // Create user
-        $usuario = Usuarios::create( $request->all() );
+        $usuario = Usuarios::create( $user_data );
 
         # notify user
         if( $usuario ) {
@@ -54,7 +60,7 @@ class UsuariosController extends Controller
             $request->session()->flash('message-class', 'danger');   
         }
 
-        return view('usuarios.create');
+        return redirect()->route('usuarios.create');
     }
 
     /**

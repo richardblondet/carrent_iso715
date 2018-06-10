@@ -7,10 +7,11 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
+				@if( Request::route()->getName() == 'usuarios.create' )
 				<li class="nav-item active">
 					<a class="nav-link" href="{{ route('usuarios.index') }}">Ver todos</a>
-
 				</li>
+				@endif
 				@if( Request::route()->getName() == 'usuarios.index' )
 				<li class="nav-item">
 			    	<a href="{{ route('usuarios.create') }}" class="btn btn-outline-success">
