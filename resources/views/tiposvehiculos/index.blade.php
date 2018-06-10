@@ -19,10 +19,10 @@
 						</div>
 						<div class="peer">
 							<div class="btn-group" role="group" aria-label="Basic example">
-								<a href="{{ route('usuarios.show', $tipo->id ) }}" class="btn btn-primary">
+								<a href="{{ route('tiposvehiculos.show', $tipo->id ) }}" class="btn btn-primary">
 									<span class="ti-pencil"></span>
 								</a>
-								<a href="{{ route('usuarios.destroy', $tipo->id ) }}" class="btn btn-secondary">
+								<a href="{{ route('tiposvehiculos.destroy', $tipo->id ) }}" class="btn btn-secondary">
 									<span class="ti-trash"></span>
 								</a>
 							</div>

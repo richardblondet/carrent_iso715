@@ -9,7 +9,7 @@
 		<h6 class="c-grey-900">Agregar Tipo de vehículo</h6>
 		
 		<div class="mT-30">
-			<form action="{{ route('tiposvehiculos.create') }}" method="post">
+			<form action="{{ route('tiposvehiculos.store') }}" method="post">
 				{{ csrf_field() }}
 				<div class="form-group">
 					<label for="nombreRol">Nombre</label>

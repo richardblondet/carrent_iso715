@@ -37,7 +37,24 @@ class TiposVehiculosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nombre = $request->input('nombre');
+
+        $tipo_vehiculo = TiposVehiculos::create([
+            'nombre' => $nombre,
+            'estado' => 1
+        ]);
+
+        # notify user
+        if( $tipo_vehiculo ) {
+            $request->session()->flash('message', 'Creado exitosamente');
+            $request->session()->flash('message-class', 'success');
+        }
+        else {
+            $request->session()->flash('message', 'No se pudo crear, inténtelo nuevamente');
+            $request->session()->flash('message-class', 'danger');   
+        }
+
+        return back();
     }
 
     /**
@@ -46,9 +63,10 @@ class TiposVehiculosController extends Controller
      * @param  \App\TiposVehiculos  $tiposVehiculos
      * @return \Illuminate\Http\Response
      */
-    public function show(TiposVehiculos $tiposVehiculos)
+    public function show(TiposVehiculos $tiposVehiculos, $id)
     {
-        //
+        $tipo = $tiposVehiculos->find( $id );
+        return view('tiposvehiculos.update')->with('tipo', $tipo);
     }
 
     /**
@@ -57,9 +75,10 @@ class TiposVehiculosController extends Controller
      * @param  \App\TiposVehiculos  $tiposVehiculos
      * @return \Illuminate\Http\Response
      */
-    public function edit(TiposVehiculos $tiposVehiculos)
+    public function edit(TiposVehiculos $tiposVehiculos, $id)
     {
-        //
+        $tipo = $tiposVehiculos->find( $id );
+        return view('tiposvehiculos.update')->with('tipo', $tipo);
     }
 
     /**
@@ -69,9 +88,16 @@ class TiposVehiculosController extends Controller
      * @param  \App\TiposVehiculos  $tiposVehiculos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TiposVehiculos $tiposVehiculos)
+    public function update(Request $request, TiposVehiculos $tiposVehiculos, $id)
     {
-        //
+        $tipo = $tiposVehiculos->find( $id );
+
+        $tipo->nombre = $request->input('nombre');
+        $tipo->estado = ( $request->input('estado') == 'on' ) ? 1 : 0;
+
+        $tipo->save();
+
+        return back();
     }
 
     /**
