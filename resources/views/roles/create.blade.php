@@ -10,12 +10,12 @@
 		<div class="row gap-20 pos-r">
 			<div class=" col-md-6">
 				<div class="bgc-white p-20 bd">
-					<h6 class="c-grey-900">Crear Rol</h6>
+					<h6 class="c-grey-900">Agregar Rol</h6>
 					<div class="mT-30">
 						<form action="{{ route('roles.store') }}" method="post">
 							{{ csrf_field() }}
 							<div class="form-group">
-								<label for="exampleInputEmail1">Nombre de Rol</label>
+								<label for="nombreRol">Nombre de Rol</label>
 								<input type="text" class="form-control" id="nombreRol" aria-describedby="rolHelp" placeholder="Nombre del rol, ej: autor" name="nombre">
 								<small id="emailHelp" class="form-text text-muted">Asigna un nombre a los roles. Ejemplo: editor</small>
 							</div>

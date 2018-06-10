@@ -356,13 +356,16 @@
 					</div>
 
 					<!-- ### $App Screen Content ### -->
+
+					<!-- Main -->
 					<main class='main-content bgc-grey-100'>
 						<div id='mainContent'>
-							<div class="full-container">
+							<div class="row gap-20 masonry pos-r">
 								@yield('content')
 							</div>
 						</div>
 					</main>
+
 
 					<!-- ### $App Screen Footer ### -->
 					<footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">

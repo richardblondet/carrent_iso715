@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuarios;
+use App\Roles;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -14,7 +15,9 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = Usuarios::all();
+
+        return view('usuarios.index')->with('usuarios', $usuarios);
     }
 
     /**
@@ -23,8 +26,10 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        // Relationship
+        $roles = Roles::all();
+        return view('usuarios.create')->with('roles', $roles );
     }
 
     /**
@@ -35,7 +40,21 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // Create user
+        $usuario = Usuarios::create( $request->all() );
+
+        # notify user
+        if( $usuario ) {
+            $request->session()->flash('message', 'Nuevo usuario creado');
+            $request->session()->flash('message-class', 'success');
+        }
+        else {
+            $request->session()->flash('message', 'No se pudo crear el usuario');
+            $request->session()->flash('message-class', 'danger');   
+        }
+
+        return view('usuarios.create');
     }
 
     /**
