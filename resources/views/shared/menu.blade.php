@@ -12,13 +12,13 @@
 		</a>
 		<ul class="dropdown-menu">
 			<li>
-				<a class='sidebar-link' href="#">Gestionar Rentas</a>
+				<a class='sidebar-link' href="{{ route('renta.index') }}">Gestionar Rentas</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Inspecciones</a>
+				<a class='sidebar-link' href="{{ route('inspeccion.index') }}">Inspecciones</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Créditos Clientes</a>
+				<a class='sidebar-link' href="{{ route('creditoclientes.index') }}">Créditos Clientes</a>
 			</li>
 		</ul>
 	</li>
@@ -53,19 +53,19 @@
 		</a>
 		<ul class="dropdown-menu">
 			<li>
-				<a class='sidebar-link' href="#">Gestionar Vehículos</a>
+				<a class='sidebar-link' href="{{ route('vehiculos.index') }}">Gestionar Vehículos</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Tipos de Vehículos</a>
+				<a class='sidebar-link' href="{{ route('tiposvehiculos.index') }}">Tipos de Vehículos</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Modelos</a>
+				<a class='sidebar-link' href="{{ route('modelos.index') }}">Modelos</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Marcas</a>
+				<a class='sidebar-link' href="{{ route('marcas.index') }}">Marcas</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="#">Combustibles</a>
+				<a class='sidebar-link' href="{{ route('tiposcombustibles.index') }}">Combustibles</a>
 			</li>
 		</ul>
 	</li>

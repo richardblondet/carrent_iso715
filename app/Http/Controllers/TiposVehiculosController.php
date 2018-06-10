@@ -14,7 +14,9 @@ class TiposVehiculosController extends Controller
      */
     public function index()
     {
-        //
+        $tipos = TiposVehiculos::all();
+
+        return view('tiposvehiculos.index')->with('tipos', $tipos );
     }
 
     /**
@@ -24,7 +26,7 @@ class TiposVehiculosController extends Controller
      */
     public function create()
     {
-        //
+        return view('tiposvehiculos.create');
     }
 
     /**
