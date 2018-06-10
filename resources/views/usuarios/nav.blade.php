@@ -1,3 +1,5 @@
+<div class="masonry-sizer col-md-6"></div>
+
 <div class="col-12 masonry-item">
 	<!-- Navegación -->
 	<nav class="navbar navbar-expand-lg navbar-light iso-nav">

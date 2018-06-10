@@ -2,8 +2,6 @@
 
 @section('content')
 
-<div class="masonry-sizer col-md-6"></div>
-
 @include('usuarios.nav')
 
 <div class="col-md-6 masonry-item">
