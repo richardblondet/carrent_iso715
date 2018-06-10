@@ -127,8 +127,16 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuarios $usuarios)
+    public function destroy(Usuarios $usuarios, Request $request, $id)
     {
-        //
+        $usuario = $usuarios->find( $id );
+
+        if( $usuario ) {
+            $usuario->delete();    
+            $request->session()->flash('message', sprintf('Usuario %s eliminado existosamente', $usuario->nombre ));
+            $request->session()->flash('message-class', 'success' );
+        }
+
+        return redirect()->route('usuarios.index');
     }
 }

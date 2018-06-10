@@ -30,3 +30,4 @@ Route::resources([
 ]);
 
 Route::get('/roles/{id}/delete', 'RolesController@destroy')->name('roles.destroy');
+Route::get('/roles/{id}/delete', 'UsuariosController@destroy')->name('usuarios.destroy');
