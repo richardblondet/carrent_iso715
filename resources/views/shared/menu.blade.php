@@ -59,10 +59,10 @@
 				<a class='sidebar-link' href="{{ route('tiposvehiculos.index') }}">Tipos de Vehículos</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="{{ route('modelos.index') }}">Modelos</a>
+				<a class='sidebar-link' href="{{ route('marcas.index') }}">Marcas</a>
 			</li>
 			<li>
-				<a class='sidebar-link' href="{{ route('marcas.index') }}">Marcas</a>
+				<a class='sidebar-link' href="{{ route('modelos.index') }}">Modelos</a>
 			</li>
 			<li>
 				<a class='sidebar-link' href="{{ route('tiposcombustibles.index') }}">Combustibles</a>

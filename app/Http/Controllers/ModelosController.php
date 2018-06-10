@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modelos;
+use App\Marcas;
 use Illuminate\Http\Request;
 
 class ModelosController extends Controller
@@ -14,7 +15,7 @@ class ModelosController extends Controller
      */
     public function index()
     {
-        $modelos = Modelos::all();
+        $modelos = Modelos::with('marca')->get();
         return view('modelos.index')->with('modelos', $modelos);
     }
 
@@ -25,7 +26,8 @@ class ModelosController extends Controller
      */
     public function create()
     {
-        //
+        $marcas = Marcas::where('estado', 1)->get();
+        return view('modelos.create')->with('marcas', $marcas );
     }
 
     /**
@@ -36,7 +38,25 @@ class ModelosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // All data
+        $modelo_data = $request->all();
+
+        // Add estado
+        $modelo_data['estado'] = 1;
+
+        $modelo = Modelos::create( $modelo_data );
+
+        if( $modelo ) {
+            # notify user
+            $request->session()->flash('message', 'Creado exitosamente');
+            $request->session()->flash('message-class', 'success');
+        }
+        else {
+            $request->session()->flash('message', 'No se pudo crear, inténtelo nuevamente');
+            $request->session()->flash('message-class', 'danger');   
+        }
+
+        return redirect()->route('modelos.index');
     }
 
     /**
@@ -45,9 +65,11 @@ class ModelosController extends Controller
      * @param  \App\Modelos  $modelos
      * @return \Illuminate\Http\Response
      */
-    public function show(Modelos $modelos)
+    public function show(Modelos $modelos, $id)
     {
-        //
+        $marcas = Marcas::where('estado', 1)->get();
+        $modelo = $modelos->find( $id );
+        return view('modelos.update')->with('modelo', $modelo)->with('marcas', $marcas);
     }
 
     /**
@@ -68,9 +90,19 @@ class ModelosController extends Controller
      * @param  \App\Modelos  $modelos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modelos $modelos)
+    public function update(Request $request, Modelos $modelos, $id )
     {
-        //
+        $modelo = $modelos->find( $id );
+        $modelo->modelo = $request->input('modelo');
+        $modelo->estado = ( $request->input('estado') == 'on' ) ? 1 : 0;
+        $modelo->marca_id = $request->input('marca_id');
+
+        $modelo->save();
+
+        $request->session()->flash('message', 'Actualizado exitosamente');
+        $request->session()->flash('message-class', 'success');
+
+        return redirect()->route('modelos.update', $id);
     }
 
     /**
@@ -79,8 +111,16 @@ class ModelosController extends Controller
      * @param  \App\Modelos  $modelos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Modelos $modelos)
+    public function destroy(Request $request, Modelos $modelos, $id)
     {
-        //
+        $modelo = $modelos->find( $id );
+
+        if( $modelo ) {
+            $modelo->delete();    
+            $request->session()->flash('message', sprintf('Modelo "%s" eliminado existosamente', $modelo->modelo ));
+            $request->session()->flash('message-class', 'success' );
+        }
+
+        return redirect()->route('modelos.index');
     }
 }

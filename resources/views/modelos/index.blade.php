@@ -10,7 +10,7 @@
 		<div class='col-md-3'>
 			<div class="layers bd bgc-white p-20 {{ $modelo->estado ? '' : 'iso-inactive-item' }}">
 				<div class="layer w-100 mB-10">
-					<h6 class="lh-1">{{ $modelo->nombre }}</h6>
+					<h6 class="lh-1">{{ $modelo->modelo }}<small>, {{ $modelo->marca->nombre }}</small></h6>
 				</div>
 				<div class="layer w-100">
 					<div class="peers ai-sb fxw-nw">

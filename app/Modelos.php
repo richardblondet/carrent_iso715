@@ -28,4 +28,13 @@ class Modelos extends Model
      * @var array
      */
     protected $hidden = [];
+
+    /**
+     * Relationships with marcas
+     *
+     * @access public
+     */
+    public function marca() {
+        return $this->belongsTo('App\Marcas', 'marca_id', 'id');
+    }
 }
