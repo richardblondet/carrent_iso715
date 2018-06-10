@@ -28,3 +28,5 @@ Route::resources([
 	'inspeccion' 		=> 'InspeccionController',
 	'renta' 			=> 'RentaController'
 ]);
+
+Route::get('/roles/{id}/delete', 'RolesController@destroy')->name('roles.destroy');

@@ -13,8 +13,9 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('roles.index');
+    {   
+        $roles = Roles::all();
+        return view('roles.index')->with('roles', $roles);
     }
 
     /**
@@ -24,7 +25,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -35,7 +36,24 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nombre = $request->input('nombre');
+
+        $rol = Roles::create([
+            'nombre' => $nombre,
+            'estado' => 1
+        ]);
+
+        # notify user
+        if( $rol ) {
+            $request->session()->flash('message', 'Nuevo rol creado');
+            $request->session()->flash('message-class', 'success');
+        }
+        else {
+            $request->session()->flash('message', 'No se pudo crear el rol');
+            $request->session()->flash('message-class', 'danger');   
+        }
+        return view('roles.create');
+
     }
 
     /**
@@ -44,9 +62,9 @@ class RolesController extends Controller
      * @param  \App\Roles  $roles
      * @return \Illuminate\Http\Response
      */
-    public function show(Roles $roles)
+    public function show(Roles $roles, $role )
     {
-        //
+        return view('roles.update')->with('rol', $roles->findOrFail( $role ));
     }
 
     /**
@@ -55,7 +73,7 @@ class RolesController extends Controller
      * @param  \App\Roles  $roles
      * @return \Illuminate\Http\Response
      */
-    public function edit(Roles $roles)
+    public function edit(Request $request, Roles $roles, $id )
     {
         //
     }
@@ -67,9 +85,20 @@ class RolesController extends Controller
      * @param  \App\Roles  $roles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Roles $roles)
-    {
-        //
+    public function update(Request $request, Roles $roles, $id)
+    {   
+        $rol = $roles->findOrFail( $id );
+
+        if( !$rol ) {
+            $request->session()->flash('message', 'Ningún rol seleccionado');
+            $request->session()->flash('message-class', 'danger' );
+        }
+        $rol->nombre = $request->input('nombre');
+        $rol->estado = ( $request->input('estado') == 'on' ) ? 1 : 0;
+
+        $rol->save();
+
+        return redirect()->route('roles.show',  $rol->id );
     }
 
     /**
@@ -78,8 +107,16 @@ class RolesController extends Controller
      * @param  \App\Roles  $roles
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Roles $roles)
+    public function destroy(Request $request, Roles $roles, $id )
     {
-        //
+        $rol = $roles->find( $id );
+
+        if( $rol ) {
+            $rol->delete();    
+            $request->session()->flash('message', sprintf('Rol %s eliminado existosamente', $rol->nombre ));
+            $request->session()->flash('message-class', 'success' );
+        }
+
+        return redirect()->route('roles.index');
     }
 }

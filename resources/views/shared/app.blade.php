@@ -54,6 +54,13 @@
 				opacity: 0;
 			}
 		}
+	.iso-section { padding-top: 25px; }
+	.iso-nav {
+		background-color: #FFF;
+		box-shadow: 0px 7px 14px 0px rgba(0,0,0,0.1);
+	}
+	.iso-box-concept { font-size: 2em; }
+	.iso-inactive-item { opacity: 0.5; }
 	</style>
 </head>
 <body class="app">
@@ -100,7 +107,7 @@
 													<div class="peers ai-c fxw-nw">
 														<div class="peer">
 															<div class="logo">
-																<img src="assets/static/images/logo.png" alt="">
+																<img src="{{ asset('assets/static/images/logo.png') }}" alt="">
 															</div>
 														</div>
 														<div class="peer peer-greed">
@@ -352,19 +359,45 @@
 					<main class='main-content bgc-grey-100'>
 						<div id='mainContent'>
 							<div class="full-container">
-
-
+								@yield('content')
 							</div>
 						</div>
 					</main>
 
 					<!-- ### $App Screen Footer ### -->
 					<footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
-						<span>Copyright © 2017 Designed by <a href="https://colorlib.com" target='_blank' title="Colorlib">Colorlib</a>. All rights reserved.</span>
+						<span>Copyright © 2018 Hecho con <i class="ti-heart"></i> por <a href="https://richardblondet.com" target='_blank' title="Colorlib">Richard Blondet</a> para la clase del profesor JuanPa. Todos los derechos reservados.</span>
 					</footer>
 				</div>
 			</div>
 			<script src="{{ asset('js/vendor.js')}}"></script>
 			<script src="{{ asset('js/bundle.js')}}"></script>
 		</body>
-		</html>
+	</html>
+
+{{--
+	<div class='col-md-3'>
+		<div class="layers bd bgc-white p-20">
+			<div class="layer w-100 mB-10">
+				<h6 class="lh-1">Nombre de rol</h6>
+			</div>
+			<div class="layer w-100">
+				<div class="peers ai-sb fxw-nw">
+					<div class="peer peer-greed iso-box-concept">
+						<span class="ti-user"></span>
+					</div>
+					<div class="peer">
+						<div class="btn-group" role="group" aria-label="Basic example">
+							<a href="#" class="btn btn-primary">
+								<span class="ti-pencil"></span>
+							</a>
+							<a href="#" class="btn btn-secondary">
+								<span class="ti-trash"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	--}}
