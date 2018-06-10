@@ -23,3 +23,11 @@
 		</div>
 	</nav>
 </div>
+
+@if ( session()->has('message') )
+	<section class="col-12 masonry-item">
+		<div class="alert alert-{{ session('message-class') }}" role="alert">
+    		{{ session('message') }}
+    	</div>
+    </section>
+@endif
