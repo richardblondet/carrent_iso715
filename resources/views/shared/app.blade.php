@@ -375,6 +375,7 @@
 			</div>
 			<script src="{{ asset('js/vendor.js')}}"></script>
 			<script src="{{ asset('js/bundle.js')}}"></script>
+			@yield('script')
 		</body>
 	</html>
 
