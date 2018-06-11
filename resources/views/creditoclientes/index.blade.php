@@ -10,12 +10,16 @@
 		<div class='col-md-3'>
 			<div class="layers bd bgc-white p-20 {{ $credito->estado ? '' : 'iso-inactive-item' }}">
 				<div class="layer w-100 mB-10">
-					<h6 class="lh-1">{{ $credito->nombre }}</h6>
+					<h6 class="lh-1">
+						{{ $credito->cliente->nombre }} 
+						<br><small>Crédito Permitido: ${{ number_format( $credito->limite_credito, 2 ) }}</small>
+						<br><small>{{ $credito->tipo }} {{ substr_replace( $credito->numberos, str_repeat("X", 8), 0, 12) }}</small>
+					</h6>
 				</div>
 				<div class="layer w-100">
 					<div class="peers ai-sb fxw-nw">
 						<div class="peer peer-greed iso-box-concept">
-							<span class="ti-star"></span>
+							<span class="ti-credit-card"></span>
 						</div>
 						<div class="peer">
 							<div class="btn-group" role="group" aria-label="Basic example">
@@ -40,7 +44,7 @@
 				<div class="layer w-100">
 					<div class="peers ai-sb fxw-nw">
 						<div class="peer peer-greed iso-box-concept">
-							<span class="ti-money"></span>
+							<span class="ti-credit-card"></span>
 						</div>
 					</div>
 				</div>

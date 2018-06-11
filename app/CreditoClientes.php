@@ -19,7 +19,7 @@ class CreditoClientes extends Model
      * @var array
      */
     protected $fillable = [
-    	'nombre_tarjeta', 'cvv', 'numberos', 'tipo', 'estado', 'limite_credito'
+    	'usuario_id', 'nombre_tarjeta', 'cvv', 'numberos', 'tipo', 'estado', 'limite_credito'
     ];
 
     /**
@@ -28,4 +28,13 @@ class CreditoClientes extends Model
      * @var array
      */
     protected $hidden = [];
+
+    /**
+     *
+     * Relationship with users
+     * 
+     */
+    public function cliente() {
+        return $this->hasOne('App\Usuarios', 'id', 'usuario_id');
+    }
 }

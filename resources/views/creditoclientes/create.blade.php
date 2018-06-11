@@ -2,77 +2,52 @@
 
 @section('content')
 
-@include('vehiculos.nav')
+@include('creditoclientes.nav')
 
 <div class="col-md-6 masonry-item">
 	<div class="bgc-white p-20 bd">
 		<h6 class="c-grey-900">Agregar Crédito Cliente</h6>
 		
-		
+		<!-- 'usuario_id', 'nombre_tarjeta', 'cvv', 'numberos', 'tipo', 'estado', 'limite_credito' -->
 		<div class="mT-30">
-			<form action="{{ route('vehiculos.store') }}" method="post">
+			<form action="{{ route('creditoclientes.store') }}" method="post">
 				{{ csrf_field() }}
 				<div class="form-group">
-					<label for="user_id">Cliente:</label>
-					<select name="user_id" id="user_id" class="form-control" required>
-						@forelse( $marcas as $marca )
-						<option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
+					<label for="usuario_id">Cliente:</label>
+					<select name="usuario_id" id="usuario_id" class="form-control" required>
+						@forelse( $usuarios as $usuario )
+						<option value="{{ $usuario->id }}">{{ $usuario->nombre }}</option>
 						@empty
-						<option value="">No existen marcas que mostrar</option>
+						<option value="">No existen usuarios que mostrar</option>
 						@endforelse
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="modelo_id">Modelos:</label>
-					<select name="modelo_id" id="modelo_id" class="form-control" required >
-						<option value="">SELECCIONA MODELO</option>
-						@forelse( $modelos as $modelo )
-						<option value="{{ $modelo->id }}" data-marca="{{ $modelo->marca->id }}" data-marca-name="{{ $modelo->marca->nombre }}">{{ $modelo->modelo }}</option>
-						@empty
-						<option value="">No existen modelos que mostrar</option>
-						@endforelse
+					<label for="cardname">Nombre en la Tarjeta</label>
+					<input type="text" class="form-control" id="cardname" aria-describedby="rolHelp" name="nombre_tarjeta">
+				</div>
+				<div class="form-group">
+					<label for="cardnumber">Número frontal</label>
+					<input type="text" class="form-control" id="cardnumber" aria-describedby="rolHelp" name="numberos">
+				</div>
+				<div class="form-group">
+					<label for="cvvcode">Código CVV</label>
+					<input type="text" class="form-control" id="cvvcode" aria-describedby="rolHelp" name="cvv">
+				</div>
+				<div class="form-group">
+					<label for="tipo">Tipo</label>
+					<select name="tipo" id="tipo" class="form-control" required>
+						<option value="">SELECCIONE OPCIÓN</option>
+						<option value="visa">Visa</option>
+						<option value="mastercard">Mastercard</option>
+						<option value="visa">Visa</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="year">Año</label>
-					<input type="text" class="form-control" id="year" aria-describedby="rolHelp" name="ano">
+					<label for="limite_credito">Crédito permitido</label>
+					<input type="text" name="limite_credito" id="limite_credito" class="form-control">
 				</div>
-				<div class="form-group">
-					<label for="nombreRol">Tipo de vehículo</label>
-					<select name="tipo_vehiculo_id" id="tipo_vehiculo_id" class="form-control" required>
-						@forelse( $tipos as $tipo )
-						<option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
-						@empty
-						<option value="">No existen tipos de vehículos que mostrar</option>
-						@endforelse
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="tipo_combustible_id">Tipo de Combustible</label>
-					<select name="tipo_combustible_id" id="tipo_combustible_id" class="form-control" required>
-						@forelse( $combustibles as $combustible )
-						<option value="{{ $combustible->id }}">{{ $combustible->nombre }}</option>
-						@empty
-						<option value="">No existen tipos de combustibles que mostrar</option>
-						@endforelse
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="chasis">Chasis</label>
-					<input type="text" class="form-control" id="chasis" aria-describedby="rolHelp" name="chassis">
-				</div>
-				<div class="form-group">
-					<label for="motor">No Motor</label>
-					<input type="text" class="form-control" id="motor" aria-describedby="rolHelp" name="numero_motor">
-				</div>
-				<div class="form-group">
-					<label for="nombreRol">Nombre</label>
-					<input type="text" class="form-control" id="nombreRol" aria-describedby="rolHelp" name="nombre">
-				</div>
-				<div class="form-group">
-					<label for="placa">Placa</label>
-					<input type="text" class="form-control" id="placa" aria-describedby="rolHelp" name="placa">
-				</div>
+				
 				<!-- <div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
 					<input type="checkbox" id="estadoRol" name="estado" class="peer">
 					<label for="estadoRol" class=" peers peer-greed js-sb ai-c">
@@ -88,39 +63,3 @@
 </div>
 
 @endsection
-
-@section('script')
-<script type="text/javascript">
-	(function () {
-		var marcas = document.getElementById('marca_id')
-		var modelos = document.getElementById('modelo_id')
-
-		if( marcas.value ) {
-			[].forEach.call( modelos.options, function( opt ) {
-				// console.log( opt.getAttribute( 'data-marca' ) != marcas.value );
-				if( opt.getAttribute( 'data-marca' ) != marcas.value ) {
-					opt.style.display = "none";
-					opt.setAttribute( 'disabled', 'disabled' );
-					console.log( opt );
-				}
-			});
-		}
-
-		marcas.addEventListener('change', function( event ) {
-			var marca = this.value;
-			[].forEach.call( modelos.options, function( opt ) {
-				modelos.value = "";
-				// console.log( opt );
-				if( opt.getAttribute('data-marca') == String( marca ) ) {
-					opt.style.display = "block";
-					opt.removeAttribute( 'disabled' );
-				} 
-				else {
-					opt.style.display = "none"
-					opt.setAttribute( 'disabled', 'disabled' );
-				}
-			});
-		}, true);
-	}());
-</script>
-@stop
