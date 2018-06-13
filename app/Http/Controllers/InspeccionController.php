@@ -145,7 +145,7 @@ class InspeccionController extends Controller
 	 * @param  \App\Inspeccion  $inspeccion
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Inspeccion $inspeccion_instance, $inspeccion)
+	public function destroy(Request $request, Inspeccion $inspeccion_instance, $inspeccion)
 	{
 		$insp = $inspeccion_instance->find( $inspeccion );
 
