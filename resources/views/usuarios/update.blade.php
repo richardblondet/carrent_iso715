@@ -14,11 +14,11 @@
 				{{ method_field('PUT') }}
 				<div class="form-group">
 					<label for="nombreRol">Nombre</label>
-					<input type="text" class="form-control" id="nombreRol" aria-describedby="rolHelp" placeholder="Nombre del rol, ej: autor" name="nombre" value="{{ $usuario->nombre }}">
+					<input type="text" class="form-control" id="nombreRol" aria-describedby="rolHelp" placeholder="Nombre del rol, ej: autor" name="nombre" value="{{ $usuario->nombre }}" required>
 				</div>
 				<div class="form-group">
 					<label for="cedulaUsuario">Cédula</label>
-					<input type="text" class="form-control" id="cedulaUsuario" aria-describedby="rolHelp" placeholder="00000000000" name="cedula" value="{{ $usuario->cedula }}">
+					<input type="number" min="11" max="11" class="form-control" id="cedulaUsuario" aria-describedby="rolHelp" placeholder="00000000000" name="cedula" value="{{ $usuario->cedula }}" required>
 				</div>
 				<div class="form-group">
 					<label for="emailUsuario">Email</label>
