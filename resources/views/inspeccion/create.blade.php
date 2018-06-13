@@ -56,11 +56,9 @@
 						<span class="peer peer-greed">Cristales Rotos</span>
 					</label>
 				</div>
-				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="estado_gomas" name="estado_gomas" class="peer">
-					<label for="estado_gomas" class=" peers peer-greed js-sb ai-c">
-						<span class="peer peer-greed">Estado de las gomas</span>
-					</label>
+				<div class="form-group">
+					<label for="estado_gomas">Estado Gomas</label>
+					<input type="text" name="estado_gomas" id="estado_gomas" class="form-control" >
 				</div>
 				<div class="form-group">
 					<label for="estado_combustible">Estado Combustible</label>

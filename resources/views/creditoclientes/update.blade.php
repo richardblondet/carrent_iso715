@@ -6,12 +6,13 @@
 
 <div class="col-md-6 masonry-item">
 	<div class="bgc-white p-20 bd">
-		<h6 class="c-grey-900">Agregar Crédito Cliente</h6>
+		<h6 class="c-grey-900">Actualizar Crédito Cliente</h6>
 		
 		<!-- 'usuario_id', 'nombre_tarjeta', 'cvv', 'numberos', 'tipo', 'estado', 'limite_credito' -->
 		<div class="mT-30">
 			<form action="{{ route('creditoclientes.update', $credito->id ) }}" method="post">
 				{{ csrf_field() }}
+				{{ method_field('PUT') }}
 				<div class="form-group">
 					<label for="usuario_id">Cliente:</label>
 					<input type="text" class="form-control" value="{{ $credito->cliente->nombre }}" disabled="disabled">
@@ -50,7 +51,7 @@
 					</label>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Agregar</button>
+				<button type="submit" class="btn btn-primary">Actualizar</button>
 			</form>
 		</div>
 

@@ -12,6 +12,7 @@
 		<div class="mT-30">
 			<form action="{{ route('inspeccion.update', $inspeccion->id ) }}" method="post">
 				{{ csrf_field() }}
+				{{ method_field('PUT') }}
 				<div class="form-group">
 					<label for="empleado_id">Empleado</label>
 					<select name="empleado_id" id="empleado_id" class="form-control" required>
@@ -33,47 +34,45 @@
 					</select>
 				</div>
 				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="tiene_rayaduras" name="estado" class="peer">
+					<input type="checkbox" id="tiene_rayaduras" name="estado" class="peer" {{ $inspeccion->estado ? 'checked="checked"' : '' }}>
 					<label for="tiene_rayaduras" class=" peers peer-greed js-sb ai-c">
 						<span class="peer peer-greed">Rayaduras</span>
 					</label>
 				</div>
 				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="goma_repuesta" name="goma_repuesta" class="peer">
+					<input type="checkbox" id="goma_repuesta" name="goma_repuesta" class="peer" {{ $inspeccion->goma_repuesta ? 'checked="checked"' : '' }}>
 					<label for="goma_repuesta" class=" peers peer-greed js-sb ai-c">
 						<span class="peer peer-greed">Goma respuesta</span>
 					</label>
 				</div>
 				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="gato" name="gato" class="peer">
+					<input type="checkbox" id="gato" name="gato" class="peer" {{ $inspeccion->gato ? 'checked="checked"' : '' }}>
 					<label for="gato" class=" peers peer-greed js-sb ai-c">
 						<span class="peer peer-greed">Posee gato</span>
 					</label>
 				</div>
 				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="cristales_rotos" name="cristales_rotos" class="peer">
+					<input type="checkbox" id="cristales_rotos" name="cristales_rotos" class="peer" {{ $inspeccion->cristales_rotos ? 'checked="checked"' : '' }}>
 					<label for="cristales_rotos" class=" peers peer-greed js-sb ai-c">
 						<span class="peer peer-greed">Cristales Rotos</span>
 					</label>
 				</div>
-				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="estado_gomas" name="estado_gomas" class="peer">
-					<label for="estado_gomas" class=" peers peer-greed js-sb ai-c">
-						<span class="peer peer-greed">Estado de las gomas</span>
-					</label>
+				<div class="form-group">
+					<label for="estado_gomas">Estado Gomas</label>
+					<input type="text" name="estado_gomas" id="estado_gomas" class="form-control" value="{{ $inspeccion->estado_gomas }}">
 				</div>
 				<div class="form-group">
 					<label for="estado_combustible">Estado Combustible</label>
-					<input type="text" name="estado_combustible" id="estado_combustible" class="form-control">
+					<input type="text" name="estado_combustible" id="estado_combustible" class="form-control" value="{{ $inspeccion->estado_combustible }}">
 				</div>
 				<div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
-					<input type="checkbox" id="estadoRol" name="estado" class="peer">
+					<input type="checkbox" id="estadoRol" name="estado" class="peer" {{ $inspeccion->estado ? 'checked="checked"' : '' }}>
 					<label for="estadoRol" class=" peers peer-greed js-sb ai-c">
 						<span class="peer peer-greed">Estado</span>
 					</label>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Agregar</button>
+				<button type="submit" class="btn btn-primary">Actualizar</button>
 			</form>
 		</div>
 

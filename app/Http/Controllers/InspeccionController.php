@@ -115,10 +115,14 @@ class InspeccionController extends Controller
 	 * @param  \App\Inspeccion  $inspeccion
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Inspeccion $inspeccion, $id )
+	public function update(Request $request, Inspeccion $inspeccion_instance, $inspeccion )
 	{
-		$inspec = $inspeccion->find( $id  );
+		// Find inspeccion
+		$inspec = $inspeccion_instance->find( $inspeccion  );
+
+		// data
 		$inspec_data = $request->all();
+
 		foreach ($inspec_data as $dkey => $dvalue) {
 			if( $dvalue == 'on' ) {
 				$inspec_data[ $dkey ] = 1;
@@ -141,8 +145,16 @@ class InspeccionController extends Controller
 	 * @param  \App\Inspeccion  $inspeccion
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Inspeccion $inspeccion)
+	public function destroy(Inspeccion $inspeccion_instance, $inspeccion)
 	{
-		//
+		$insp = $inspeccion_instance->find( $inspeccion );
+
+		if( $insp ) {
+			$insp->delete();
+			$request->session()->flash('message', sprintf('Inspección "%s" eliminada existosamente', $insp->id ));
+            $request->session()->flash('message-class', 'success' );
+		}
+
+		return redirect()->route('inspeccion.index');
 	}
 }
