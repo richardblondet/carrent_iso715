@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="links">
-                    <a target="_blank" href="https://laravel.com/docs">Documentation Laravel</a>
+                    <a target="_blank" href="/renta">Iniciar</a>
                     <a target="_blank" href="https://github.com/richardblondet/carrent_iso715">GitHub</a>
                 </div>
             </div>

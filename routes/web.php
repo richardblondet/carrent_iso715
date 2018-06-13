@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/iniciar', 'FrontendController@index');
+
 // Route resources
 Route::resources([
 	'roles' 			=> 'RolesController',
