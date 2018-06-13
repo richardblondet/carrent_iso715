@@ -28,12 +28,12 @@
 					<input type="text" class="form-control" id="celularUsuario" aria-describedby="rolHelp" placeholder="Celular sin espacios ni caracteres" name="celular">
 				</div>
 				<div class="form-group">
-					<label for="licenciaUsuario">Licencia</label>
-					<input type="text" class="form-control" id="licenciaUsuario" aria-describedby="rolHelp" placeholder="Licencia vigente" name="licencia">
+					<label for="licencia">Licencia</label>
+					<input type="text" class="form-control" id="licencia" aria-describedby="rolHelp" placeholder="Licencia vigente" name="licencia">
 				</div>
 				<div class="form-group">
-					<label for="licenciaUsuario">Rol</label>
-					<select name="rol_id" id="rolUsuario" class="form-control">
+					<label for="rol_id">Rol</label>
+					<select name="rol_id" id="rol_id" class="form-control">
 						@forelse( $roles as $rol )
 						<option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
 						@empty
@@ -42,8 +42,8 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="licenciaUsuario">Contraseña</label>
-					<input type="password" class="form-control" id="licenciaUsuario" aria-describedby="rolHelp" placeholder="Inserte una contraseña para este usuario" name="password" required>
+					<label for="password">Contraseña</label>
+					<input type="password" class="form-control" id="password" aria-describedby="rolHelp" placeholder="Inserte una contraseña para este usuario" name="password" required>
 				</div>
 				<!-- <div class="checkbox checkbox-circle checkbox-info peers ai-c mB-15">
 					<input type="checkbox" id="estadoRol" name="estado" class="peer">

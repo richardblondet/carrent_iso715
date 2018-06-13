@@ -28,4 +28,15 @@ class Inspeccion extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function empleado() {
+        return $this->hasOne('App\Usuarios', 'id', 'empleado_id');
+    }
+
+    public function vehiculo() {
+        return $this->hasOne('App\Vehiculos', 'id', 'vehiculo_id');
+    }
+
+    
 }
+
