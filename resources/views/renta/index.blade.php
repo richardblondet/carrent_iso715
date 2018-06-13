@@ -10,7 +10,14 @@
 		<div class='col-md-3'>
 			<div class="layers bd bgc-white p-20 {{ $renta->estado ? '' : 'iso-inactive-item' }}">
 				<div class="layer w-100 mB-10">
-					<h6 class="lh-1">{{ $renta->created_at }}</h6>
+					<h6 class="lh-1">Fecha {{ $renta->created_at->format('d M, Y') }}
+						<br><small>Cliente: "{{ $renta->cliente->nombre }}"</small>
+						<br><small>Procesado por: "{{ $renta->empleado->nombre }}"</small>
+					</h6>
+					<h6>
+						Detalles <br> <small>Rentado en: {{ $renta->lugar_renta }}</small>
+						<br><small>Devolución: {{ $renta->lugar_devolucion }}</small>
+					</h6>
 				</div>
 				<div class="layer w-100">
 					<div class="peers ai-sb fxw-nw">

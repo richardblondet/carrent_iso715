@@ -19,7 +19,7 @@ class Renta extends Model
      * @var array
      */
     protected $fillable = [
-    	'empleado_id', 'cliente_id', 'monto_por_dia', 'comision_empleado', 'comentario', 'estado', 'lugar_renta', 'lugar_devolucion'
+    	'empleado_id', 'cliente_id', 'monto_por_dia', 'comision_empleado', 'comentario', 'estado', 'lugar_renta', 'lugar_devolucion', 'inspeccion_id'
     ];
 
     /**
@@ -28,4 +28,16 @@ class Renta extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function cliente() {
+        return $this->hasOne('App\Usuarios', 'id', 'cliente_id');
+    }
+
+    public function empleado() {
+        return $this->hasOne('App\Usuarios', 'id', 'empleado_id');
+    }
+
+    public function inspeccion() {
+        return $this->hasOne('App\Inspeccion', 'id', 'inspeccion_id');
+    }
 }
