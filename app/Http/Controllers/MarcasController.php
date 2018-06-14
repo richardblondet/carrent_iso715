@@ -107,7 +107,7 @@ class MarcasController extends Controller
      * @param  \App\Marcas  $marcas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marcas $marcas, $id)
+    public function destroy(Request $request, Marcas $marcas, $id)
     {
         $marca = $marcas->find( $id );
 
