@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Car Rent ~ ISO715</title>
-	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
 	<style>
 	#loader {
 		transition: all 0.3s ease-in-out;
@@ -107,7 +107,7 @@
 													<div class="peers ai-c fxw-nw">
 														<div class="peer">
 															<div class="logo">
-																<img src="{{ asset('assets/static/images/logo.png') }}" alt="">
+																<img src="{{ secure_asset('secure_assets/static/images/logo.png') }}" alt="">
 															</div>
 														</div>
 														<div class="peer peer-greed">
@@ -373,8 +373,8 @@
 					</footer>
 				</div>
 			</div>
-			<script src="{{ asset('js/vendor.js')}}"></script>
-			<script src="{{ asset('js/bundle.js')}}"></script>
+			<script src="{{ secure_asset('js/vendor.js')}}"></script>
+			<script src="{{ secure_asset('js/bundle.js')}}"></script>
 			@yield('script')
 		</body>
 	</html>
